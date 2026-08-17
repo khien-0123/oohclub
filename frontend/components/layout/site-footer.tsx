@@ -18,12 +18,12 @@ export function SiteFooter() {
             height={44}
             className="h-9 w-auto"
           />
-          <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/55">{footer.note}</p>
+          <p className="mt-5 max-w-xs text-sm leading-relaxed text-white">{footer.note}</p>
         </div>
 
         {/* Navigation */}
         <div className="min-w-0">
-          <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-white/35">
+          <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-white">
             Điều hướng
           </p>
           <ul className="mt-5 space-y-3">
@@ -31,7 +31,7 @@ export function SiteFooter() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-sm text-white/65 transition hover:text-white"
+                  className="text-sm text-white transition hover:text-gold"
                 >
                   {link.label}
                 </a>
@@ -42,7 +42,7 @@ export function SiteFooter() {
 
         {/* Socials */}
         <div className="min-w-0">
-          <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-white/35">
+          <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-white">
             Mạng xã hội
           </p>
           <ul className="mt-5 space-y-3">
@@ -52,28 +52,25 @@ export function SiteFooter() {
                   href={item.href}
                   target={item.href.startsWith("http") ? "_blank" : undefined}
                   rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="text-sm text-white/65 transition hover:text-white"
+                  className="text-sm text-white transition hover:text-gold"
                 >
                   {item.label}
                 </a>
               </li>
             ))}
           </ul>
-        </div>
-
-        <div className="col-span-2 md:col-span-3">
           <a
             href="https://www.facebook.com/groups/OOHClub"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex max-w-full border border-white/50 px-5 py-3 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-white transition hover:border-white hover:bg-white hover:text-ink"
+            className="mt-7 inline-flex max-w-full border border-white/50 px-5 py-3 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-white transition hover:border-white hover:bg-white hover:text-ink"
           >
             Tham gia cộng đồng
           </a>
         </div>
       </div>
 
-      <div className={`${wrap} border-t border-white/10 py-6 text-xs text-white/35`}>
+      <div className={`${wrap} border-t border-white/10 py-6 text-xs text-white`}>
         <p>© {new Date().getFullYear()} OOHClub · Hội Quảng cáo TP.HCM (HAA)</p>
       </div>
     </footer>

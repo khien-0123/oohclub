@@ -12,7 +12,7 @@ export function News() {
   return (
     <section id="tin-tuc" className="scroll-mt-24 border-b border-line bg-ink text-on-accent">
       <div className={`${wrap} ${sectionY}`}>
-        <SectionHeading kicker="Cập nhật" title="Tin tức mới" variant="gold" className="mb-10" />
+        <SectionHeading kicker="Cập nhật" title="Tin tức mới" className="mb-10" />
 
         <div className="grid gap-8 lg:grid-cols-3">
           {/* Bài nổi bật */}
