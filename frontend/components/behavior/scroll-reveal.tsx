@@ -28,10 +28,23 @@ export function ScrollReveal() {
           io.unobserve(entry.target);
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+      { threshold: 0.01, rootMargin: "40px 0px 40px 0px" },
     );
 
-    nodes.forEach((el) => {
+    // Tách hẳn pha đọc và pha ghi. Trộn getBoundingClientRect() với classList
+    // trong cùng vòng lặp buộc trình duyệt tính lại layout ở mỗi node
+    // (layout thrashing); đọc gộp trước chỉ tốn đúng một lần tính layout.
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const inView = nodes.map((el) => {
+      const rect = el.getBoundingClientRect();
+      return rect.top < vh * 0.98 && rect.bottom > vh * 0.02;
+    });
+
+    nodes.forEach((el, i) => {
+      if (inView[i]) {
+        el.classList.add("is-visible");
+        return;
+      }
       el.classList.remove("is-visible");
       io.observe(el);
     });

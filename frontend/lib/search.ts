@@ -8,8 +8,16 @@ export type SearchItem = {
   type: "Sự kiện" | "Tin tức";
 };
 
+function normalize(text: string) {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
 /** Gộp tin + sự kiện, bỏ trùng title */
-export function getSearchableItems(): SearchItem[] {
+function buildSearchableItems(): SearchItem[] {
   const map = new Map<string, SearchItem>();
 
   for (const item of featured) {
@@ -47,22 +55,31 @@ export function getSearchableItems(): SearchItem[] {
   return Array.from(map.values());
 }
 
-function normalize(text: string) {
-  return text
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .trim();
+/**
+ * Nguồn dữ liệu là hằng số build-time nên index chỉ dựng một lần khi module được
+ * nạp, thay vì dựng lại Map + chạy normalize() cho từng item ở mỗi request.
+ */
+const SEARCH_INDEX: ReadonlyArray<{ item: SearchItem; haystack: string }> =
+  buildSearchableItems().map((item) => ({
+    item,
+    haystack: normalize([item.title, item.excerpt ?? "", item.date, item.type].join(" ")),
+  }));
+
+export function getSearchableItems(): SearchItem[] {
+  return SEARCH_INDEX.map((entry) => entry.item);
 }
 
 export function searchContent(query: string): SearchItem[] {
   const q = normalize(query);
   if (!q) return [];
 
-  return getSearchableItems().filter((item) => {
-    const haystack = normalize(
-      [item.title, item.excerpt ?? "", item.date, item.type].join(" "),
-    );
-    return haystack.includes(q) || q.split(/\s+/).every((part) => haystack.includes(part));
-  });
+  // Khớp khi haystack chứa đủ mọi từ khoá. Điều kiện `haystack.includes(q)`
+  // trước đây là thừa: khớp nguyên cụm luôn kéo theo khớp từng từ.
+  const terms = q.split(/\s+/);
+
+  const results: SearchItem[] = [];
+  for (const { item, haystack } of SEARCH_INDEX) {
+    if (terms.every((term) => haystack.includes(term))) results.push(item);
+  }
+  return results;
 }

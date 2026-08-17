@@ -1,18 +1,9 @@
-export const navLinks = [
-  { href: "#gioi-thieu", label: "Giới thiệu" },
-  { href: "#tin-tuc", label: "Tin tức" },
-  { href: "#su-kien", label: "Sự kiện" },
-  { href: "#chuyen-gia", label: "Góc chuyên gia" },
-  { href: "#thanh-vien", label: "Thành viên" },
-  { href: "#lien-he", label: "Liên hệ" },
-] as const;
-
 /** Khớp H1 + slide trang chủ oohclub.com */
 export const hero = {
   brand: "OOHClub",
   headline: "Cộng đồng OOHClub – Câu lạc bộ quảng cáo ngoài trời",
   support:
-    "Câu lạc bộ Quảng cáo ngoài trời TP.HCM — kết nối doanh nghiệp và cá nhân hoạt động OOH trên toàn quốc.",
+    "Câu lạc bộ Quảng cáo ngoài trời TP.HCM — kết nối doanh nghiệp và cá nhân hoạt động OOH trên toàn\u00a0quốc.",
   primaryCta: { href: "#su-kien-noi-bat", label: "Sự kiện nổi bật" },
   secondaryCta: { href: "#gioi-thieu", label: "Xem thêm" },
   image: "/images/oohclub-1.png",
@@ -245,6 +236,24 @@ export const adFormatTags = [
   { label: "WikiTraffic", weight: 1 },
 ] as const;
 
+/** Ảnh (public/images) gán cho từng chuyên mục trong slider "Loại hình quảng cáo" */
+export const adFormatTagImages: Record<string, string> = {
+  traffic: "/images/news-running-man.jpg",
+  "Top 10": "/images/featured-scholarship.jpg",
+  "Wiki Traffic": "/images/news-growth.jpg",
+  Shojiki: "/images/hero-led-nguyen-hue.jpg",
+  OOHAward: "/images/gallery-gala.jpg",
+  "Nguyễn Lê Phi Sơn": "/images/expert-group-1.jpg",
+  "màn hình LED": "/images/gallery-led.jpg",
+  creativeOOH: "/images/news-plastic.jpg",
+  "báo cáo OOH": "/images/about-meeting.jpg",
+  "OOH Award": "/images/featured-adtalk.jpg",
+  HAA: "/images/featured-haa-world.jpg",
+  "Góc chuyên gia": "/images/expert-group-2.jpg",
+  "#quangcaongoaitroi": "/images/featured-haa-world.jpg",
+  "#dangvinhquang": "/images/expert-group-3.jpg",
+};
+
 /** Danh sách chuyên gia hiển thị trên trang chủ */
 export const experts = [
   { name: "Nguyễn Trường Sơn" },
@@ -261,12 +270,3 @@ export const experts = [
   { name: "Nguyễn Kim Quí" },
 ] as const;
 
-export const footer = {
-  note: "OOHClub — Câu lạc bộ Quảng cáo ngoài trời TP.HCM. Trực thuộc Hội Quảng cáo TP.HCM (HAA).",
-  socials: [
-    { label: "Facebook", href: "https://www.facebook.com/groups/OOHClub" },
-    { label: "Twitter", href: "#" },
-    { label: "Instagram", href: "#" },
-    { label: "YouTube", href: "#" },
-  ],
-};

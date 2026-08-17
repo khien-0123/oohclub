@@ -1,12 +1,16 @@
 import Image from "next/image";
-import { footer, navLinks } from "@/content/home";
+import { footer, navLinks } from "@/content/site";
+import { sectionY, wrap } from "@/components/ui/styles";
 
 export function SiteFooter() {
   return (
-    <footer id="lien-he" className="scroll-mt-24 bg-ink text-on-accent">
-      <div className="wrap section grid gap-12 md:grid-cols-3" data-reveal>
+    <footer id="lien-he" className="scroll-mt-24 overflow-x-clip bg-ink text-on-accent">
+      <div
+        className={`${wrap} ${sectionY} grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-8 md:grid-cols-3 md:gap-12`}
+        data-reveal
+      >
         {/* Brand */}
-        <div>
+        <div className="col-span-2 min-w-0 md:col-span-1">
           <Image
             src="/images/logo-oohclub.png"
             alt="OOHClub"
@@ -18,7 +22,7 @@ export function SiteFooter() {
         </div>
 
         {/* Navigation */}
-        <div>
+        <div className="min-w-0">
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-white/35">
             Điều hướng
           </p>
@@ -37,7 +41,7 @@ export function SiteFooter() {
         </div>
 
         {/* Socials */}
-        <div>
+        <div className="min-w-0">
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-white/35">
             Mạng xã hội
           </p>
@@ -55,18 +59,21 @@ export function SiteFooter() {
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="col-span-2 md:col-span-3">
           <a
             href="https://www.facebook.com/groups/OOHClub"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-7 inline-flex border border-white/50 px-5 py-3 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-white transition hover:border-white hover:bg-white hover:text-ink"
+            className="inline-flex max-w-full border border-white/50 px-5 py-3 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-white transition hover:border-white hover:bg-white hover:text-ink"
           >
             Tham gia cộng đồng
           </a>
         </div>
       </div>
 
-      <div className="wrap border-t border-white/10 py-6 text-xs text-white/35">
+      <div className={`${wrap} border-t border-white/10 py-6 text-xs text-white/35`}>
         <p>© {new Date().getFullYear()} OOHClub · Hội Quảng cáo TP.HCM (HAA)</p>
       </div>
     </footer>

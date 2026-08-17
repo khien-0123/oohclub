@@ -10,11 +10,12 @@ oohclub/
 │   ├── app/                  # Routes: layout, pages
 │   │   └── tim-kiem/         # /tim-kiem
 │   ├── components/
-│   │   ├── layout/           # Header, footer, scroll reveal
-│   │   ├── sections/         # Khối nội dung trang chủ
-│   │   └── ui/               # Component dùng chung
-│   ├── content/              # Data / copy
-│   ├── lib/                  # Helpers
+│   │   ├── behavior/         # Client side-effect, không render UI
+│   │   ├── layout/           # Header, footer (dùng ở mọi trang)
+│   │   ├── sections/         # Mỗi file = 1 section trang chủ
+│   │   └── ui/               # Component + style token dùng chung
+│   ├── content/              # site.ts (toàn site) · home.ts (trang chủ)
+│   ├── lib/                  # Logic (search)
 │   └── public/images/        # Static assets
 └── README.md
 ```

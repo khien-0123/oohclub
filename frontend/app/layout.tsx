@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { Lora } from "next/font/google";
-import { ScrollReveal } from "@/components/layout/scroll-reveal";
+import { ScrollReveal } from "@/components/behavior/scroll-reveal";
 import "./globals.css";
 
 const lora = Lora({
   variable: "--font-lora",
-  subsets: ["latin", "latin-ext", "vietnamese"],
+  // "latin" + "vietnamese" đã phủ đủ nội dung site (Ă Đ Ơ Ư và block U+1EA0–1EF9
+  // nằm trong subset "vietnamese"). "latin-ext" chỉ phục vụ tiếng Đông Âu -> bỏ.
+  subsets: ["latin", "vietnamese"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -21,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${lora.variable} h-full`}>
-      <body className="min-h-full bg-bg font-sans text-fg antialiased">
+    <html lang="vi" className={`${lora.variable} h-full overflow-x-clip scroll-smooth`}>
+      <body className="min-h-full overflow-x-clip bg-bg font-sans text-fg antialiased">
         {children}
         <ScrollReveal />
       </body>

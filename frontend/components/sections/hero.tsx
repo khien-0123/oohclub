@@ -1,5 +1,7 @@
 import Image from "next/image";
+import { Kicker } from "@/components/ui/kicker";
 import { hero } from "@/content/home";
+import { oGold, wrap } from "@/components/ui/styles";
 
 export function Hero() {
   const [headlineBefore, headlineAfter] = hero.headline.split("OOHClub");
@@ -11,40 +13,44 @@ export function Hero() {
         src={hero.image}
         alt={hero.imageAlt}
         fill
-        priority
-        className="object-cover object-[center_70%]"
+        preload
+        className="object-cover object-[72%_center] sm:object-[center_70%]"
         sizes="100vw"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/20 lg:via-white/70 lg:to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-white/92 to-white/70 sm:bg-gradient-to-r sm:from-white sm:via-white/85 sm:to-white/20 lg:via-white/70 lg:to-transparent" />
 
-      <div className="wrap relative flex min-h-[32rem] items-center py-16 sm:min-h-[40rem] lg:min-h-[calc(100svh-4.5rem)] lg:py-24">
-        <div className="max-w-xl animate-fade-up">
-          <p className="kicker">OOHClub · HO ChI MINH CITY</p>
+      <div
+        className={`${wrap} relative flex min-h-[32rem] items-center py-14 sm:min-h-[40rem] sm:py-16 lg:min-h-[calc(100svh-4.5rem)] lg:py-24`}
+      >
+        <div className="mx-auto w-full max-w-xl animate-fade-up text-center sm:mx-0 sm:text-left">
+          <Kicker className="justify-center sm:justify-start">
+            OOHClub · HO CHI MINH CITY
+          </Kicker>
 
-          <h1 className="mt-6 text-[clamp(2.2rem,3.8vw,3.4rem)] font-semibold leading-[1.16] tracking-[-0.01em]">
+          <h1 className="mt-6 text-[clamp(2rem,8vw,3.4rem)] font-semibold leading-[1.16] tracking-[-0.01em]">
             {headlineBefore}
             <span className="text-accent">O</span>
-            <span className="o-gold">O</span>
+            <span className={oGold}>O</span>
             <span className="text-muted">HClub</span>
             <br />
             {headlineTail}
           </h1>
 
-          <p className="mt-6 max-w-md text-[0.95rem] leading-relaxed text-muted">
+          <p className="mx-auto mt-6 max-w-lg text-pretty text-[0.95rem] leading-relaxed text-muted sm:mx-0 sm:max-w-md">
             {hero.support}
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
             <a
               href={hero.primaryCta.href}
-              className="inline-flex items-center bg-ink px-6 py-3.5 text-[0.78rem] font-bold uppercase tracking-[0.12em] text-on-accent transition hover:bg-fg"
+              className="inline-flex items-center justify-center bg-ink px-5 py-3 text-[0.72rem] font-bold uppercase tracking-[0.12em] text-on-accent transition hover:bg-fg sm:px-6 sm:py-3.5 sm:text-[0.78rem]"
             >
               {hero.primaryCta.label}
             </a>
             <a
               href={hero.secondaryCta.href}
-              className="inline-flex items-center border border-fg/25 bg-white/80 px-6 py-3.5 text-[0.78rem] font-bold uppercase tracking-[0.12em] text-fg transition-colors duration-200 hover:border-gold hover:bg-gold hover:text-ink"
+              className="inline-flex items-center justify-center border border-fg/25 bg-white/80 px-5 py-3 text-[0.72rem] font-bold uppercase tracking-[0.12em] text-fg transition-colors duration-200 hover:border-gold hover:bg-gold hover:text-ink sm:px-6 sm:py-3.5 sm:text-[0.78rem]"
             >
               {hero.secondaryCta.label}
             </a>
