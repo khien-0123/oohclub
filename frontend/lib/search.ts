@@ -1,4 +1,4 @@
-import { featured, latestEvents } from "@/content/home";
+import { clubEvents } from "@/content/events";
 import { newsArticles } from "@/content/news";
 
 export type SearchItem = {
@@ -18,31 +18,19 @@ function normalize(text: string) {
     .trim();
 }
 
-/** Gộp tin + sự kiện, bỏ trùng title */
+/** Gộp tin + sự kiện, bỏ trùng title — sự kiện được ưu tiên nếu trùng. */
 function buildSearchableItems(): SearchItem[] {
   const map = new Map<string, SearchItem>();
 
-  for (const item of featured) {
+  for (const item of clubEvents) {
     map.set(item.title, {
       title: item.title,
       date: item.date,
       image: item.image,
       excerpt: item.excerpt,
       type: "Sự kiện",
-      href: "/#su-kien",
+      href: `/su-kien/${item.slug}`,
     });
-  }
-
-  for (const item of latestEvents) {
-    if (!map.has(item.title)) {
-      map.set(item.title, {
-        title: item.title,
-        date: item.date,
-        image: item.image,
-        type: "Sự kiện",
-        href: "/#su-kien",
-      });
-    }
   }
 
   for (const item of newsArticles) {
@@ -79,8 +67,6 @@ export function searchContent(query: string): SearchItem[] {
   const q = normalize(query);
   if (!q) return [];
 
-  // Khớp khi haystack chứa đủ mọi từ khoá. Điều kiện `haystack.includes(q)`
-  // trước đây là thừa: khớp nguyên cụm luôn kéo theo khớp từng từ.
   const terms = q.split(/\s+/);
 
   const results: SearchItem[] = [];

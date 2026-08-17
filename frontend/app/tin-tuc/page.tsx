@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { meta, sectionY, wrap } from "@/components/ui/styles";
+import { meta, pageBannerOverlay, sectionY, wrap } from "@/components/ui/styles";
 import { getNewsByCategory, newsArticles, newsBanner, newsCategories } from "@/content/news";
 
 type Props = {
@@ -36,16 +36,16 @@ export default async function NewsPage({ searchParams }: Props) {
             className="object-cover object-[center_40%]"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/90 to-white/75 sm:bg-gradient-to-r sm:from-white sm:via-white/88 sm:to-white/25" />
+          <div className={pageBannerOverlay} />
           <div className={`${wrap} relative flex min-h-[18rem] items-center py-12 sm:min-h-[22rem] sm:py-16`}>
             <div className="max-w-xl animate-fade-up" data-reveal>
-              <h1 className="text-[clamp(2rem,5vw,3.1rem)] font-semibold leading-[1.15] tracking-[-0.01em]">
+              <h1 className="text-[clamp(2rem,5vw,3.1rem)] font-semibold leading-[1.15] tracking-[-0.01em] text-ink">
                 {newsBanner.title}
               </h1>
-              <p className="mt-4 max-w-md text-[0.95rem] leading-relaxed text-muted">
+              <p className="mt-4 max-w-md text-[0.95rem] font-medium leading-relaxed text-ink">
                 {newsBanner.support}
               </p>
-              <p className="mt-4 text-sm text-muted">
+              <p className="mt-4 text-sm text-fg/70">
                 <Link href="/" className="transition hover:text-gold">
                   Trang chủ
                 </Link>

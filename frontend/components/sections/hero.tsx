@@ -18,7 +18,7 @@ export function Hero() {
         sizes="100vw"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-white/92 to-white/70 sm:bg-gradient-to-r sm:from-white sm:via-white/85 sm:to-white/20 lg:via-white/70 lg:to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#cfdcea] via-[#cfdcea]/80 to-[#cfdcea]/35 sm:bg-gradient-to-r sm:from-[#cfdcea] sm:from-[8%] sm:via-[#cfdcea]/75 sm:via-[38%] sm:to-transparent sm:to-[70%]" />
 
       <div
         className={`${wrap} relative flex min-h-[32rem] items-center py-14 sm:min-h-[40rem] sm:py-16 lg:min-h-[calc(100svh-4.5rem)] lg:py-24`}
@@ -37,7 +37,7 @@ export function Hero() {
             {headlineTail}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-lg text-pretty text-[0.95rem] leading-relaxed text-muted sm:mx-0 sm:max-w-md">
+          <p className="mx-auto mt-6 max-w-lg text-pretty text-[0.95rem] font-medium leading-relaxed text-fg sm:mx-0 sm:max-w-md">
             {hero.support}
           </p>
 

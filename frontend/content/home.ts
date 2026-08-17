@@ -94,29 +94,8 @@ export const featured = [
 /** Widget “Tin tức mới” trên trang chủ — lấy từ content/news.ts */
 export { latestNews } from "@/content/news";
 
-/** Widget “Sự kiện mới” trên trang chủ */
-export const latestEvents = [
-  {
-    date: "11/05/2026",
-    title: "Thư mời tài trợ OOHClub 2026",
-    image: "/images/event-sponsor-2026-banner.jpg",
-  },
-  {
-    date: "30/03/2026",
-    title: "Đại diện OOHClub tham dự hội thảo OOH khu vực châu Á tại Thẩm Quyến",
-    image: "/images/event-shenzhen.jpg",
-  },
-  {
-    date: "30/03/2026",
-    title: "OOHCafe Hà Nội lần 2 – Kết nối cộng đồng OOH",
-    image: "/images/event-oohcafe-hn.jpg",
-  },
-  {
-    date: "15/07/2025",
-    title: "Hội thảo OOHClub 2025: Kiếm tiền từ mặt bằng trống dành cho chuỗi cửa hàng",
-    image: "/images/event-hoithao-2025.jpg",
-  },
-] as const;
+/** Widget “Sự kiện mới” trên trang chủ — lấy từ content/events.ts */
+export { latestEvents } from "@/content/events";
 
 /** Loại hình quảng cáo — định dạng chính (có ảnh) + mục lục phụ */
 export const adFormatsPrimary = [
