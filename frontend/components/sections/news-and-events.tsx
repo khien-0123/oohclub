@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { latestEvents, latestNews } from "@/content/home";
 
-export function NewsAndEventsEnhanced() {
+export function NewsAndEvents() {
   const [lead, ...rest] = latestNews;
   const sideItems = rest.slice(0, 3);
   const bottomItems = rest.slice(3);

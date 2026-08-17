@@ -27,7 +27,7 @@ const sliderImages: Record<string, string> = {
   "#dangvinhquang": "/images/expert-group-3.jpg",
 };
 
-export function AdFormatsEnhanced() {
+export function AdFormats() {
   const sliderTags = adFormatTags
     .filter((t) => t.weight >= 2 && !topTagLabels.has(t.label))
     .slice()
