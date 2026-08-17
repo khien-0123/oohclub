@@ -1,7 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { latestNews } from "@/content/home";
+import { newsArticles } from "@/content/news";
 import { sectionY, wrap } from "@/components/ui/styles";
+
+function newsHref(title: string) {
+  return `/tin-tuc/${newsArticles.find((item) => item.title === title)?.slug ?? ""}`;
+}
 
 /** Khối magazine nền tối — "Tin tức mới" */
 export function News() {
@@ -15,9 +21,9 @@ export function News() {
         <SectionHeading kicker="Cập nhật" title="Tin tức mới" className="mb-10" />
 
         <div className="grid gap-8 lg:grid-cols-3">
-          {/* Bài nổi bật */}
-          <article
-            className="group relative min-h-[20rem] cursor-pointer overflow-hidden sm:min-h-[26rem] lg:col-span-2"
+          <Link
+            href={newsHref(lead.title)}
+            className="group relative min-h-[20rem] overflow-hidden sm:min-h-[26rem] lg:col-span-2"
             data-reveal="left"
           >
             <Image
@@ -36,12 +42,11 @@ export function News() {
                 {lead.title}
               </h3>
             </div>
-          </article>
+          </Link>
 
-          {/* Sidebar: Tin mới nhất */}
           <div data-reveal="right">
-            <a
-              href="#"
+            <Link
+              href="/tin-tuc"
               className="group/link flex items-center justify-between border-b border-white/15 pb-4"
             >
               <h3 className="text-lg font-semibold transition group-hover/link:text-gold">
@@ -50,11 +55,14 @@ export function News() {
               <span aria-hidden className="text-gold transition group-hover/link:translate-x-1">
                 →
               </span>
-            </a>
+            </Link>
             <ul className="divide-y divide-white/10">
               {sideItems.map((item) => (
                 <li key={item.title}>
-                  <article className="group grid cursor-pointer grid-cols-[5.5rem_1fr] gap-4 py-4">
+                  <Link
+                    href={newsHref(item.title)}
+                    className="group grid grid-cols-[5.5rem_1fr] gap-4 py-4"
+                  >
                     <div className="relative aspect-[16/11] self-start overflow-hidden border border-white/15">
                       <Image
                         src={item.image}
@@ -72,19 +80,19 @@ export function News() {
                         {item.title}
                       </h4>
                     </div>
-                  </article>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        {/* Hàng card dưới */}
         <div className="mt-8 grid gap-8 sm:grid-cols-2">
           {bottomItems.map((item, i) => (
-            <article
+            <Link
               key={item.title}
-              className="group cursor-pointer"
+              href={newsHref(item.title)}
+              className="group"
               data-reveal
               style={{ ["--reveal-delay" as string]: `${i * 100}ms` }}
             >
@@ -103,7 +111,7 @@ export function News() {
               <h4 className="mt-2 text-base font-semibold leading-snug text-white/90 transition group-hover:text-gold">
                 {item.title}
               </h4>
-            </article>
+            </Link>
           ))}
         </div>
       </div>

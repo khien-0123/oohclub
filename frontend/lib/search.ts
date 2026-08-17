@@ -1,4 +1,5 @@
-import { featured, latestEvents, latestNews } from "@/content/home";
+import { featured, latestEvents } from "@/content/home";
+import { newsArticles } from "@/content/news";
 
 export type SearchItem = {
   title: string;
@@ -6,6 +7,7 @@ export type SearchItem = {
   image: string;
   excerpt?: string;
   type: "Sự kiện" | "Tin tức";
+  href: string;
 };
 
 function normalize(text: string) {
@@ -27,6 +29,7 @@ function buildSearchableItems(): SearchItem[] {
       image: item.image,
       excerpt: item.excerpt,
       type: "Sự kiện",
+      href: "/#su-kien",
     });
   }
 
@@ -37,17 +40,20 @@ function buildSearchableItems(): SearchItem[] {
         date: item.date,
         image: item.image,
         type: "Sự kiện",
+        href: "/#su-kien",
       });
     }
   }
 
-  for (const item of latestNews) {
+  for (const item of newsArticles) {
     if (!map.has(item.title)) {
       map.set(item.title, {
         title: item.title,
         date: item.date,
         image: item.image,
+        excerpt: item.excerpt,
         type: "Tin tức",
+        href: `/tin-tuc/${item.slug}`,
       });
     }
   }

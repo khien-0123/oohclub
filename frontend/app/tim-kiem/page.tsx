@@ -72,7 +72,7 @@ export default async function SearchPage({ searchParams }: Props) {
                     data-reveal
                     style={{ ["--reveal-delay" as string]: `${(i % 3) * 80}ms` }}
                   >
-                    <Link href="/#tin-tuc" className="group block">
+                    <Link href={item.href} className="group block">
                       <div className="relative aspect-[16/10] overflow-hidden bg-bg-soft">
                         <Image
                           src={item.image}
