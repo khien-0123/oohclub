@@ -6,12 +6,16 @@ Website Câu lạc bộ Quảng cáo ngoài trời TP.HCM (HAA).
 
 ```
 oohclub/
-├── frontend/          # Next.js app (UI + content)
-│   ├── app/           # App Router pages
-│   ├── components/    # React components
-│   ├── content/       # Nội dung trang chủ
-│   ├── lib/           # Helpers (search, …)
-│   └── public/        # Static assets
+├── frontend/                 # Next.js (App Router)
+│   ├── app/                  # Routes: layout, pages
+│   │   └── tim-kiem/         # /tim-kiem
+│   ├── components/
+│   │   ├── layout/           # Header, footer, scroll reveal
+│   │   ├── sections/         # Khối nội dung trang chủ
+│   │   └── ui/               # Component dùng chung
+│   ├── content/              # Data / copy
+│   ├── lib/                  # Helpers
+│   └── public/images/        # Static assets
 └── README.md
 ```
 

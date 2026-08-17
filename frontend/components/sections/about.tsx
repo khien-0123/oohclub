@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { about } from "@/content/home";
-import { SectionHeading } from "@/components/section-header";
+import { SectionHeading } from "@/components/ui/section-header";
 
 export function About() {
   return (

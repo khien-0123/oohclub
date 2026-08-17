@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
 import { searchContent } from "@/lib/search";
 
 type Props = {

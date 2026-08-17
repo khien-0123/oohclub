@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Lora } from "next/font/google";
-import { ScrollReveal } from "@/components/scroll-reveal";
+import { ScrollReveal } from "@/components/layout/scroll-reveal";
 import "./globals.css";
 
 const lora = Lora({

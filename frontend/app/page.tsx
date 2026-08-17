@@ -1,11 +1,11 @@
-import { About } from "@/components/about";
-import { AdFormatsEnhanced } from "@/components/ad-formats-enhanced";
-import { ExpertsEnhanced } from "@/components/experts-enhanced";
-import { FeaturedJournal } from "@/components/featured-journal";
-import { Hero } from "@/components/hero";
-import { NewsAndEventsEnhanced } from "@/components/news-and-events-enhanced";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
+import { About } from "@/components/sections/about";
+import { AdFormats } from "@/components/sections/ad-formats";
+import { Experts } from "@/components/sections/experts";
+import { FeaturedJournal } from "@/components/sections/featured-journal";
+import { Hero } from "@/components/sections/hero";
+import { NewsAndEvents } from "@/components/sections/news-and-events";
 
 export default function Home() {
   return (
@@ -15,9 +15,9 @@ export default function Home() {
         <Hero />
         <About />
         <FeaturedJournal />
-        <NewsAndEventsEnhanced />
-        <AdFormatsEnhanced />
-        <ExpertsEnhanced />
+        <NewsAndEvents />
+        <AdFormats />
+        <Experts />
       </main>
       <SiteFooter />
     </>

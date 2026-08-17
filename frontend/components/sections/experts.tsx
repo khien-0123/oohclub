@@ -2,7 +2,7 @@ import Image from "next/image";
 import { experts } from "@/content/home";
 
 
-export function ExpertsEnhanced() {
+export function Experts() {
   return (
     <section id="chuyen-gia" className="section scroll-mt-24 border-b border-line bg-bg-soft/60">
       <div className="wrap">
