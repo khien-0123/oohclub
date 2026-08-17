@@ -4,11 +4,11 @@
 
 # Dependencies
 node_modules/
-web/node_modules/
+frontend/node_modules/
 
 # Next.js
-web/.next/
-web/out/
+frontend/.next/
+frontend/out/
 
 # Env
 .env
@@ -20,6 +20,5 @@ Thumbs.db
 *.log
 
 # Agent skill / Claude docs
-web/CLAUDE.md
-web/AGENTS.md
-
+frontend/CLAUDE.md
+frontend/AGENTS.md
