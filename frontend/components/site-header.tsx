@@ -56,7 +56,7 @@ export function SiteHeader() {
               <a
                 key={link.href}
                 href={pathname === "/" ? link.href : `/${link.href}`}
-                className="text-[0.8rem] font-medium text-fg/60 transition hover:text-fg"
+                className="text-[0.95rem] font-medium text-fg transition hover:text-gold"
               >
                 {link.label}
               </a>
