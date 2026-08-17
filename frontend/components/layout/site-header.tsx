@@ -28,6 +28,15 @@ export function SiteHeader() {
     }
   }
 
+  function onNavClick(e: MouseEvent<HTMLAnchorElement>, href: string) {
+    setOpen(false);
+    setSearchOpen(false);
+    if (href.startsWith("/#") && pathname === "/") {
+      e.preventDefault();
+      document.getElementById(href.slice(2))?.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   function onSearch(e: FormEvent) {
     e.preventDefault();
     const q = query.trim();
@@ -52,15 +61,18 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Chính">
           {navLinks
-            .filter((l) => l.href !== "#lien-he")
+            .filter((l) => l.href !== "/#lien-he")
             .map((link) => (
-              <a
+              <Link
                 key={link.href}
-                href={pathname === "/" ? link.href : `/${link.href}`}
-                className="text-[0.95rem] font-medium text-fg transition hover:text-gold"
+                href={link.href}
+                onClick={(e) => onNavClick(e, link.href)}
+                className={`text-[0.95rem] font-medium transition hover:text-gold ${
+                  isNavActive(pathname, link.href) ? "text-gold" : "text-fg"
+                }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
         </nav>
 
@@ -107,12 +119,12 @@ export function SiteHeader() {
             </button>
           )}
 
-          <a
-            href={pathname === "/" ? "#lien-he" : "/#lien-he"}
+          <Link
+            href="/#lien-he"
             className="hidden border border-fg px-4 py-2 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-fg transition hover:bg-fg hover:text-on-accent sm:inline-flex"
           >
             Liên hệ
-          </a>
+          </Link>
 
           <button
             type="button"
@@ -139,13 +151,13 @@ export function SiteHeader() {
           <ul className="space-y-4">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={pathname === "/" ? link.href : `/${link.href}`}
+                <Link
+                  href={link.href}
                   className="text-xl font-medium"
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => onNavClick(e, link.href)}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -153,6 +165,11 @@ export function SiteHeader() {
       ) : null}
     </header>
   );
+}
+
+function isNavActive(pathname: string, href: string) {
+  if (href === "/tin-tuc") return pathname.startsWith("/tin-tuc");
+  return false;
 }
 
 function SearchIcon() {

@@ -3,12 +3,12 @@
  */
 
 export const navLinks = [
-  { href: "#gioi-thieu", label: "Giới thiệu" },
-  { href: "#tin-tuc", label: "Tin tức" },
-  { href: "#su-kien", label: "Sự kiện" },
-  { href: "#chuyen-gia", label: "Góc chuyên gia" },
-  { href: "#thanh-vien", label: "Thành viên" },
-  { href: "#lien-he", label: "Liên hệ" },
+  { href: "/#gioi-thieu", label: "Giới thiệu" },
+  { href: "/tin-tuc", label: "Tin tức" },
+  { href: "/#su-kien", label: "Sự kiện" },
+  { href: "/#chuyen-gia", label: "Góc chuyên gia" },
+  { href: "/#thanh-vien", label: "Thành viên" },
+  { href: "/#lien-he", label: "Liên hệ" },
 ] as const;
 
 export const footer = {

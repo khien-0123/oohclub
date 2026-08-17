@@ -91,39 +91,8 @@ export const featured = [
   },
 ] as const;
 
-/** Widget “Tin tức mới” trên trang chủ */
-export const latestNews = [
-  {
-    date: "07/08/2026",
-    title: "CMS thông minh: “Bộ não” đứng sau hệ thống DOOH hiện đại",
-    image: "/images/news-cms.jpg",
-  },
-  {
-    date: "30/05/2026",
-    title: "OOH đang bước vào giai đoạn tăng trưởng mạnh",
-    image: "/images/news-growth.jpg",
-  },
-  {
-    date: "12/05/2026",
-    title: "LEGO biến tuyến metro thành “đường đua ngầm” F1",
-    image: "/images/news-lego.jpg",
-  },
-  {
-    date: "11/05/2026",
-    title: "Thư mời tài trợ OOHClub 2026",
-    image: "/images/event-sponsor-2026-banner.jpg",
-  },
-  {
-    date: "08/05/2026",
-    title: "Đến billboard cũng phải “chạy” để quảng bá Running Man Thái Lan",
-    image: "/images/news-running-man.jpg",
-  },
-  {
-    date: "16/04/2026",
-    title: "“Plastic Free Rameswaram” biến rác thải thành lời cảnh báo",
-    image: "/images/news-plastic.jpg",
-  },
-] as const;
+/** Widget “Tin tức mới” trên trang chủ — lấy từ content/news.ts */
+export { latestNews } from "@/content/news";
 
 /** Widget “Sự kiện mới” trên trang chủ */
 export const latestEvents = [

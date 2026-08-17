@@ -24,8 +24,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${lora.variable} h-full overflow-x-clip scroll-smooth`}>
-      <body className="min-h-full overflow-x-clip bg-bg font-sans text-fg antialiased">
+    <html
+      lang="vi"
+      className={`${lora.variable} h-full overflow-x-clip scroll-smooth`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
+      <body
+        className="min-h-full overflow-x-clip bg-bg font-sans text-fg antialiased"
+        suppressHydrationWarning
+      >
         {children}
         <ScrollReveal />
       </body>
