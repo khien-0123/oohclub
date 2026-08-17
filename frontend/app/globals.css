@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  /* Màu chủ đạo OOHClub: #e51d73 (hồng), #f9bd5d (vàng), #575755 (xám) */
   --bg: #ffffff;
   --bg-soft: #f7f6f4;
   --mint: #fdf1f7;
@@ -11,7 +10,6 @@
   --muted: #575755;
   --line: rgba(87, 87, 85, 0.22);
   --ink: #2b2b29;
-  /* Toàn trang chỉ dùng một sắc hồng duy nhất: #e51d73 */
   --accent: #e51d73;
   --accent-soft: #fbdfeb;
   --on-accent: #ffffff;
@@ -31,101 +29,30 @@
   --color-accent-soft: var(--accent-soft);
   --color-on-accent: var(--on-accent);
   --font-sans: var(--font-lora);
+
+  --animate-fade-up: fade-up 0.7s ease-out forwards;
+  --animate-fade-in: fade-in 0.7s ease-out forwards;
+  --animate-marquee: marquee 35s linear infinite;
 }
 
-html {
-  scroll-behavior: smooth;
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-lora), Georgia, serif;
-}
-
-
-::selection {
-  background: var(--accent);
-  color: #ffffff;
-}
-
-.wrap {
-  margin-inline: auto;
-  width: 100%;
-  max-width: 80rem;
-  padding-inline: 1.5rem; /* 24px */
-}
-
-.section {
-  padding-block: 5rem; /* 80px — đồng bộ mọi section */
-}
-
-.kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.kicker::before {
-  content: "";
-  width: 1.5rem;
-  height: 2px;
-  background: var(--gold);
-}
-
-/* Kicker trên nền tối */
-.kicker-gold {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.kicker-gold::before {
-  content: "";
-  width: 1.5rem;
-  height: 2px;
-  background: var(--gold);
-}
-
-.heading {
-  margin-top: 0.9rem;
-  font-family: var(--font-lora), Georgia, serif;
-  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
-}
-
-.meta {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-}
-
-/* Chữ O vàng trong tiêu đề: lõi #f9bd5d, viền hồng như logo */
-.o-gold {
-  color: var(--gold);
-  -webkit-text-stroke: 2px var(--accent);
-  paint-order: stroke fill;
-}
-
-.tag {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes marquee {
@@ -137,43 +64,12 @@ body {
   }
 }
 
-.animate-marquee {
-  animation: marquee 35s linear infinite;
+::selection {
+  background: var(--accent);
+  color: #ffffff;
 }
 
-.marquee:hover .animate-marquee {
-  animation-play-state: paused;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-fade-up {
-  animation: fadeUp 0.7s ease-out forwards;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.7s ease-out forwards;
-}
-
-/* Scroll reveal — toàn trang (chỉ khi JS bật class reveal-on) */
+/* Scroll reveal — driven by [data-reveal] + .is-visible from JS */
 html.reveal-on [data-reveal] {
   opacity: 0;
   transform: translateY(28px);
@@ -181,7 +77,6 @@ html.reveal-on [data-reveal] {
     opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
 
 html.reveal-on [data-reveal="fade"] {
@@ -211,12 +106,7 @@ html.reveal-on [data-reveal].is-visible {
   }
 
   .animate-fade-up,
-  .animate-fade-in {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-
+  .animate-fade-in,
   .animate-marquee {
     animation: none;
   }

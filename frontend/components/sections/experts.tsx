@@ -1,27 +1,30 @@
 import Image from "next/image";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { experts } from "@/content/home";
-
+import { sectionY, wrap } from "@/components/ui/styles";
 
 export function Experts() {
   return (
-    <section id="chuyen-gia" className="section scroll-mt-24 border-b border-line bg-bg-soft/60">
-      <div className="wrap">
-        <div className="mb-12 max-w-2xl" data-reveal>
-          <p className="kicker">Cộng đồng</p>
-          <h2 className="heading">Góc chuyên gia</h2>
-          <p className="mt-4 text-sm leading-relaxed text-muted">
-            Những chuyên gia ngành quảng cáo ngoài trời trên OOHClub.
-          </p>
-        </div>
+    <section
+      id="chuyen-gia"
+      className={`${sectionY} scroll-mt-24 border-b border-line bg-bg-soft/60`}
+    >
+      <div className={wrap}>
+        <SectionHeading
+          kicker="Cộng đồng"
+          title="Góc chuyên gia"
+          description="Những chuyên gia ngành quảng cáo ngoài trời trên OOHClub."
+          className="mb-12"
+        />
 
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
           {/* Con số lớn */}
-          <div className="lg:col-span-4" data-reveal="left">
-            <div className="border-b-2 border-gold pb-6 lg:border-b-0 lg:border-l-2 lg:border-gold lg:pb-0 lg:pl-8">
+          <div className="flex lg:col-span-4 lg:self-stretch" data-reveal>
+            <div className="flex w-full flex-col justify-center border-b-2 border-gold pb-6 text-center lg:border-b-0 lg:border-l-2 lg:border-gold lg:pb-0 lg:pl-8">
               <p className="text-7xl font-semibold leading-none text-accent sm:text-8xl">
                 {experts.length}
               </p>
-              <p className="mt-4 max-w-[16rem] text-sm leading-relaxed text-muted">
+              <p className="mx-auto mt-4 max-w-[16rem] text-sm leading-relaxed text-muted">
                 chuyên gia đang chia sẻ kinh nghiệm và góc nhìn cùng cộng đồng OOHClub.
               </p>
             </div>
@@ -30,8 +33,8 @@ export function Experts() {
           {/* Danh sách avatar + tên, 2 cột */}
           <ul
             id="thanh-vien"
-            className="grid scroll-mt-24 gap-x-12 self-start sm:grid-cols-2 lg:col-span-8"
-            data-reveal="right"
+            className="grid min-w-0 scroll-mt-24 gap-x-8 self-start sm:grid-cols-2 sm:gap-x-12 lg:col-span-8"
+            data-reveal
           >
             {experts.map((expert) => {
               const initials = expert.name

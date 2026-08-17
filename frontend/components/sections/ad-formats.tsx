@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { adFormatsPrimary, adFormatTags } from "@/content/home";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { adFormatsPrimary, adFormatTags, adFormatTagImages } from "@/content/home";
+import { meta, sectionY, tag, wrap } from "@/components/ui/styles";
 
 /**
  * Mosaic trên: 3 loại hình chữ to nhất trang thật —
@@ -9,24 +11,6 @@ import { adFormatsPrimary, adFormatTags } from "@/content/home";
 const topTiles = adFormatsPrimary.slice(0, 3);
 const topTagLabels = new Set(["OOH", "quảng cáo ngoài trời", "DOOH", "creative OOH"]);
 
-/** Ảnh thật (public/images) gán cho từng chuyên mục trong slider */
-const sliderImages: Record<string, string> = {
-  traffic: "/images/news-running-man.jpg",
-  "Top 10": "/images/news-trends.jpg",
-  "Wiki Traffic": "/images/news-growth.jpg",
-  Shojiki: "/images/hero-led-nguyen-hue.jpg",
-  OOHAward: "/images/gallery-gala.jpg",
-  "Nguyễn Lê Phi Sơn": "/images/expert-group-1.jpg",
-  "màn hình LED": "/images/gallery-led.jpg",
-  creativeOOH: "/images/news-plastic.jpg",
-  "báo cáo OOH": "/images/about-meeting.jpg",
-  "OOH Award": "/images/featured-adtalk.jpg",
-  HAA: "/images/featured-haa-world.jpg",
-  "Góc chuyên gia": "/images/expert-group-2.jpg",
-  "#quangcaongoaitroi": "/images/cta-bali.jpg",
-  "#dangvinhquang": "/images/expert-group-3.jpg",
-};
-
 export function AdFormats() {
   const sliderTags = adFormatTags
     .filter((t) => t.weight >= 2 && !topTagLabels.has(t.label))
@@ -35,15 +19,17 @@ export function AdFormats() {
   const chipTags = adFormatTags.filter((t) => t.weight === 1);
 
   return (
-    <section id="loai-hinh" className="section scroll-mt-24 border-b border-line">
-      <div className="wrap">
-        <div className="mb-12 max-w-2xl" data-reveal>
-          <p className="kicker">Chuyên mục</p>
-          <h2 className="heading">Loại hình quảng cáo</h2>
-          <p className="mt-4 text-sm leading-relaxed text-muted">
-            Các định dạng OOH được cộng đồng quan tâm trên OOHClub.
-          </p>
-        </div>
+    <section
+      id="loai-hinh"
+      className={`${sectionY} scroll-mt-24 overflow-x-clip border-b border-line`}
+    >
+      <div className={`${wrap} min-w-0`}>
+        <SectionHeading
+          kicker="Chuyên mục"
+          title="Loại hình quảng cáo"
+          description="Các định dạng OOH được cộng đồng quan tâm trên OOHClub."
+          className="mb-12"
+        />
 
         {/* Mosaic 3 ảnh trên */}
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -53,7 +39,7 @@ export function AdFormats() {
             return (
               <li
                 key={item.name}
-                className={isLead ? "sm:col-span-2 sm:row-span-2" : ""}
+                className={`min-w-0 ${isLead ? "sm:col-span-2 sm:row-span-2" : ""}`}
                 data-reveal="scale"
                 style={{ ["--reveal-delay" as string]: `${i * 100}ms` }}
               >
@@ -97,15 +83,15 @@ export function AdFormats() {
         </ul>
 
         {/* Slider tự chạy — các chuyên mục >9pt còn lại, 4 tile một khung nhìn */}
-        <div className="marquee mt-4 overflow-hidden" data-reveal>
-          <div className="flex w-max gap-4 animate-marquee">
+        <div className="relative mt-4 max-w-full overflow-x-hidden hover:[&_.animate-marquee]:[animation-play-state:paused]">
+          <div className="flex w-max max-w-none animate-marquee gap-4">
             {[...sliderTags, ...sliderTags].map((tag, i) => {
-              const image = sliderImages[tag.label];
+              const image = adFormatTagImages[tag.label];
 
               return (
                 <article
                   key={`${tag.label}-${i}`}
-                  className="group relative aspect-[16/10] w-56 shrink-0 cursor-pointer overflow-hidden border border-line sm:w-64 lg:w-[18.25rem]"
+                  className="group relative aspect-[16/10] w-[11.5rem] shrink-0 cursor-pointer overflow-hidden border border-line sm:w-64 lg:w-[18.25rem]"
                 >
                   {image ? (
                     <Image
@@ -119,7 +105,7 @@ export function AdFormats() {
                     <div className="h-full w-full bg-bg-soft" />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <p className="absolute bottom-3 left-4 right-4 break-words text-base font-semibold leading-snug text-white transition group-hover:text-gold">
+                  <p className="absolute bottom-3 left-3 right-3 break-words text-sm font-semibold leading-snug text-white transition group-hover:text-gold sm:bottom-3 sm:left-4 sm:right-4 sm:text-base">
                     {tag.label}
                   </p>
                 </article>
@@ -129,17 +115,17 @@ export function AdFormats() {
         </div>
 
         {/* Tag 8pt — chữ thường, làm chip */}
-        <div className="mt-12 border-t border-line pt-8" data-reveal>
-          <div className="mb-5 flex items-baseline justify-between gap-4">
-            <p className="tag">Chuyên mục khác</p>
-            <span className="meta">{chipTags.length} chuyên mục</span>
+        <div className="mt-10 min-w-0">
+          <div className="mb-5 flex flex-wrap items-baseline justify-between gap-2">
+            <p className={tag}>Chuyên mục khác</p>
+            <span className={`${meta} shrink-0`}>{chipTags.length} chuyên mục</span>
           </div>
-          <ul className="flex flex-wrap gap-2">
+          <ul className="flex max-w-full flex-wrap gap-2">
             {chipTags.map((item) => (
-              <li key={item.label}>
+              <li key={item.label} className="max-w-full">
                 <a
                   href="#"
-                  className="inline-flex items-center border border-line px-3 py-2 text-xs text-muted transition hover:border-fg hover:text-fg"
+                  className="inline-flex max-w-full items-center border border-line px-3 py-2 text-left text-xs leading-snug text-muted break-words transition hover:border-fg hover:text-fg"
                 >
                   {item.label}
                 </a>

@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { Kicker } from "@/components/ui/kicker";
 import { searchContent } from "@/lib/search";
+import { heading, meta, sectionY, wrap } from "@/components/ui/styles";
 
 type Props = {
   searchParams: Promise<{ s?: string }>;
@@ -28,9 +30,9 @@ export default async function SearchPage({ searchParams }: Props) {
       <SiteHeader />
       <main>
         <section className="border-b border-line bg-bg-soft">
-          <div className="wrap section" data-reveal>
-            <p className="kicker">Tìm kiếm</p>
-            <h1 className="heading">
+          <div className={`${wrap} ${sectionY}`} data-reveal>
+            <Kicker>Tìm kiếm</Kicker>
+            <h1 className={heading}>
               {query ? (
                 <>
                   Kết quả tìm kiếm: <span className="text-accent">{query}</span>
@@ -52,8 +54,8 @@ export default async function SearchPage({ searchParams }: Props) {
           </div>
         </section>
 
-        <section className="section">
-          <div className="wrap">
+        <section className={sectionY}>
+          <div className={wrap}>
             {!query ? (
               <p className="text-muted" data-reveal>
                 Chưa có từ khóa tìm kiếm.
@@ -80,11 +82,11 @@ export default async function SearchPage({ searchParams }: Props) {
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                       </div>
-                      <p className="kicker mt-4">{item.type}</p>
+                      <Kicker className="mt-4">{item.type}</Kicker>
                       <h2 className="mt-2 text-lg font-semibold leading-snug transition group-hover:text-gold">
                         {item.title}
                       </h2>
-                      <time className="meta mt-2 block">{item.date}</time>
+                      <time className={`${meta} mt-2 block`}>{item.date}</time>
                     </Link>
                   </li>
                 ))}

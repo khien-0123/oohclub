@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FormEvent, MouseEvent, useEffect, useRef, useState } from "react";
-import { navLinks } from "@/content/home";
+import { navLinks } from "@/content/site";
+import { wrap } from "@/components/ui/styles";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -37,17 +39,16 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/95 backdrop-blur">
-      <div className="wrap flex h-16 items-center justify-between gap-6 sm:h-[4.5rem]">
-        <a href="/" aria-label="OOHClub trang chủ" className="shrink-0" onClick={goHome}>
+      <div className={`${wrap} flex h-16 min-w-0 items-center justify-between gap-3 sm:h-[4.5rem] sm:gap-6`}>
+        <Link href="/" aria-label="OOHClub trang chủ" className="min-w-0 shrink-0" onClick={goHome}>
           <Image
             src="/images/logo-oohclub.png"
             alt="OOHClub"
             width={200}
             height={58}
-            className="h-10 w-auto sm:h-11"
-            priority
+            className="h-9 w-auto sm:h-11"
           />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Chính">
           {navLinks
@@ -63,11 +64,11 @@ export function SiteHeader() {
             ))}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex min-w-0 shrink-0 items-center gap-1.5 sm:gap-3">
           {searchOpen ? (
             <form
               onSubmit={onSearch}
-              className="flex items-center border border-line bg-bg"
+              className="flex max-w-[min(100%,14rem)] items-center border border-line bg-bg sm:max-w-none"
             >
               <input
                 ref={inputRef}
@@ -76,19 +77,19 @@ export function SiteHeader() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Tìm kiếm…"
-                className="w-[9.5rem] bg-transparent px-3 py-2 text-sm outline-none sm:w-52"
+                className="w-[7.5rem] min-w-0 bg-transparent px-2 py-2 text-sm outline-none sm:w-52 sm:px-3"
                 aria-label="Từ khóa tìm kiếm"
               />
               <button
                 type="submit"
-                className="px-3 py-2 text-fg transition hover:text-gold"
+                className="px-2 py-2 text-fg transition hover:text-gold sm:px-3"
                 aria-label="Tìm kiếm"
               >
                 <SearchIcon />
               </button>
               <button
                 type="button"
-                className="border-l border-line px-3 py-2 text-muted transition hover:text-fg"
+                className="border-l border-line px-2 py-2 text-muted transition hover:text-fg sm:px-3"
                 aria-label="Đóng tìm kiếm"
                 onClick={() => setSearchOpen(false)}
               >
