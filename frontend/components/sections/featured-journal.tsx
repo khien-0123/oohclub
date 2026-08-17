@@ -1,26 +1,19 @@
 import Image from "next/image";
+import Link from "next/link";
+import { DateBadge } from "@/components/ui/date-badge";
 import { Kicker } from "@/components/ui/kicker";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { featured } from "@/content/home";
+import { getEventByTitle } from "@/content/events";
+import { newsArticles } from "@/content/news";
 import { meta, sectionY, wrap } from "@/components/ui/styles";
 
-function DateBadge({ date }: { date: string }) {
-  const full = date.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-  if (!full) return null;
-
-  return (
-    <time
-      dateTime={`${full[3]}-${full[2]}-${full[1]}`}
-      className="absolute left-0 top-0 z-10 flex w-[3.15rem] flex-col text-center"
-    >
-      <span className="bg-gold py-1 text-[0.5rem] font-bold uppercase tracking-[0.12em] text-ink">
-        Thg {Number(full[2])}
-      </span>
-      <span className="bg-ink py-1.5 text-[1.15rem] font-semibold leading-none text-white">
-        {Number(full[1])}
-      </span>
-    </time>
-  );
+function hrefForFeatured(title: string) {
+  const event = getEventByTitle(title);
+  if (event) return `/su-kien/${event.slug}`;
+  const article = newsArticles.find((item) => item.title === title);
+  if (article) return `/tin-tuc/${article.slug}`;
+  return "/su-kien";
 }
 
 export function FeaturedJournal() {
@@ -35,11 +28,10 @@ export function FeaturedJournal() {
         <SectionHeading
           kicker="Nổi bật"
           title="Sự kiện nổi bật"
-          action={{ href: "#su-kien", label: "Xem sự kiện" }}
+          action={{ href: "/su-kien", label: "Xem sự kiện" }}
         />
 
         <div className="grid items-stretch gap-10 lg:grid-cols-12 lg:gap-12">
-          {/* Cột trái: lead + 2 card kích thước cũ (~1/3 trang) */}
           <div className="flex flex-col gap-10 lg:col-span-8">
             <article
               className="grid min-w-0 border border-[#e51d73]/40 transition hover:border-[#e51d73] sm:grid-cols-[minmax(0,5fr)_minmax(0,3fr)]"
@@ -61,12 +53,12 @@ export function FeaturedJournal() {
                   {lead.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{lead.excerpt}</p>
-                <a
-                  href="#su-kien"
+                <Link
+                  href={hrefForFeatured(lead.title)}
                   className="mt-5 inline-block text-[0.68rem] font-bold uppercase tracking-[0.18em] text-fg transition hover:text-gold"
                 >
                   Xem chi tiết
-                </a>
+                </Link>
               </div>
             </article>
 
@@ -78,8 +70,8 @@ export function FeaturedJournal() {
                   data-reveal
                   style={{ ["--reveal-delay" as string]: `${80 + i * 100}ms` }}
                 >
-                  <a
-                    href="#su-kien"
+                  <Link
+                    href={hrefForFeatured(item.title)}
                     className="group flex h-full w-full flex-col overflow-hidden border border-[#e51d73]/40 bg-bg transition hover:border-[#e51d73]"
                   >
                     <div className="relative aspect-[16/10] shrink-0 overflow-hidden border-b border-[#e51d73]/25 bg-bg-soft">
@@ -99,20 +91,19 @@ export function FeaturedJournal() {
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-muted">{item.excerpt}</p>
                     </div>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Cột phải: dài bằng cả khối trái */}
           <aside
             className="flex h-full flex-col lg:col-span-4 lg:self-stretch"
             data-reveal="right"
           >
             <Kicker>Sự kiện khác</Kicker>
 
-            <a href="#su-kien" className="group mt-5 block">
+            <Link href={hrefForFeatured(sideLead.title)} className="group mt-5 block">
               <div className="relative aspect-[16/10] overflow-hidden bg-bg-soft">
                 <Image
                   src={sideLead.image}
@@ -127,13 +118,13 @@ export function FeaturedJournal() {
                 {sideLead.title}
               </h3>
               <time className={`${meta} mt-2 block`}>{sideLead.date}</time>
-            </a>
+            </Link>
 
             <ul className="mt-5 flex flex-1 flex-col divide-y divide-line border-y border-line">
               {sideSmall.map((item) => (
                 <li key={item.title} className="flex flex-1">
-                  <a
-                    href="#su-kien"
+                  <Link
+                    href={hrefForFeatured(item.title)}
                     className="group grid flex-1 grid-cols-[1fr_5.5rem] items-center gap-4 py-4"
                   >
                     <div>
@@ -151,7 +142,7 @@ export function FeaturedJournal() {
                         sizes="88px"
                       />
                     </div>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

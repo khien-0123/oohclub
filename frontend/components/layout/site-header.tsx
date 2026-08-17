@@ -169,6 +169,7 @@ export function SiteHeader() {
 
 function isNavActive(pathname: string, href: string) {
   if (href === "/tin-tuc") return pathname.startsWith("/tin-tuc");
+  if (href === "/su-kien") return pathname.startsWith("/su-kien");
   return false;
 }
 

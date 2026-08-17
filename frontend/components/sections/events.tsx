@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { latestEvents } from "@/content/home";
 import { meta, sectionY, wrap } from "@/components/ui/styles";
@@ -11,18 +12,21 @@ export function Events() {
         <SectionHeading
           kicker="Lịch"
           title="Sự kiện mới"
-          action={{ href: "#", label: "Xem tất cả sự kiện" }}
+          action={{ href: "/su-kien", label: "Xem tất cả sự kiện" }}
           className="mb-10"
         />
 
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {latestEvents.map((item, i) => (
             <li
-              key={item.title}
+              key={item.slug}
               data-reveal="scale"
               style={{ ["--reveal-delay" as string]: `${i * 90}ms` }}
             >
-              <article className="group flex h-full cursor-pointer flex-col border border-[#e51d73]/40 bg-bg transition hover:border-[#e51d73]">
+              <Link
+                href={`/su-kien/${item.slug}`}
+                className="group flex h-full flex-col border border-[#e51d73]/40 bg-bg transition hover:border-[#e51d73]"
+              >
                 <div className="relative aspect-[16/10] overflow-hidden border-b border-[#e51d73]/25">
                   <Image
                     src={item.image}
@@ -41,7 +45,7 @@ export function Events() {
                     Xem chi tiết
                   </span>
                 </div>
-              </article>
+              </Link>
             </li>
           ))}
         </ul>

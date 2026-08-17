@@ -15,3 +15,7 @@ export const tag =
 
 export const oGold =
   "text-gold [-webkit-text-stroke:2px_var(--accent)] [paint-order:stroke_fill]";
+
+/** Wash banner listing: đục bên chữ, trong suốt bên ảnh. */
+export const pageBannerOverlay =
+  "absolute inset-0 bg-gradient-to-b from-[#e8eef4]/80 via-[#e8eef4]/70 to-[#e8eef4]/35 sm:bg-gradient-to-r sm:from-[#e8eef4]/80 sm:from-[10%] sm:via-[#e8eef4]/75 sm:via-[40%] sm:to-transparent sm:to-[75%]";
